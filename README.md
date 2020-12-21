@@ -15,7 +15,7 @@
 ### Association
 
 - has_many :items
-- has_many :users_items
+- has_many :user_items
 
 
 ## items テーブル
@@ -46,10 +46,9 @@
 | prefecture_id | integer    | null: false       |
 | municipality  | string     | null: false       |
 | address_num   | string     | null: false       |
-| building_name | string     | null: false       |
-| phone_num     | integer    | null: false       |
-| user          | references | foreign_key: true |
-| prototype     | references | foreign_key: true |
+| building_name | string     |                   |
+| phone_num     | string     | null: false       |
+| user_item     | references | foreign_key: true |
 
 ### Association
 
@@ -66,4 +65,5 @@
 ### Association
 
 - belongs_to :user
-- has_one :item
+- belongs_to :item
+- has_one :address
