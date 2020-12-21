@@ -1,24 +1,74 @@
-# README
+## users テーブル
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+| Column          | Type       | Options |
+| --------------  | ---------- | ------------|
+| nickname        | string     | null: false |
+| email           | string     | null: false |
+| password        | string     | null: false |
+| last_name       | string     | null: false |
+| first_name      | string     | null: false |
+| last_name_kana  | string     | null: false |
+| first_name_kana | string     | null: false |
+| birth_year      | integer    | null: false |
+| birth_month     | integer    | null: false |
+| birth_day       | integer    | null: false |
 
-Things you may want to cover:
 
-* Ruby version
+### Association
 
-* System dependencies
+- has_many :items
+- has_many :addresses
 
-* Configuration
 
-* Database creation
+## items テーブル
 
-* Database initialization
+| Column       | Type       | Options           |
+| ------------ | ---------- | ----------------- |
+| product_name | text       | null: false       |
+| explanation  | text       | null: false       |
+| category     | string     | null: false       |
+| status       | string     | null: false       |
+| bearer       | string     | null: false       |
+| prefectures  | string     | null: false       |
+| shipment     | string     | null: false       |
+| price        | integer    | null: false       |
+| user         | references | foreign_key: true |
 
-* How to run the test suite
+### Association
 
-* Services (job queues, cache servers, search engines, etc.)
+- belongs_to :user
+- has_one :item_address
+- has_one :address, through: :item_address
 
-* Deployment instructions
 
-* ...
+## addresses テーブル
+
+| Column        | Type       | Options           |
+| ------------- | ---------- | ----------------- |
+| postal_code   | integer    | null: false       |
+| prefectures   | string     | null: false       |
+| municipality  | string     | null: false       |
+| address_num   | string     | null: false       |
+| building_name | string     | null: false       |
+| phone_num     | integer    | null: false       |
+| user          | references | foreign_key: true |
+| prototype     | references | foreign_key: true |
+
+### Association
+
+- belongs_to :user
+- has_many :items_addresses
+- has_many :items, through: :items_addresses
+
+
+## items_addresses テーブル
+
+| Column        | Type       | Options           |
+| ------------- | ---------- | ----------------- |
+| item          | references | foreign_key: true |
+| address       | references | foreign_key: true |
+
+### Association
+
+- belongs_to :item
+- belongs_to :address
