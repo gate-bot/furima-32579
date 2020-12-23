@@ -3,13 +3,13 @@ class ItemsController < ApplicationController
   def index
   end
 
-  def new
-    @item = Item.new
-  end
+  # def new
+    # @item = Item.new
+  # end
 
-  def create
-    @item = Item.new
-  end
+  # def create
+    # @item = Item.new
+  # end
 
   def destroy
   end
