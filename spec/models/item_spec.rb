@@ -68,12 +68,12 @@ RSpec.describe Item do
           @item.valid?
           expect(@item.errors.full_messages).to include("Price is not included in the list")
       end
-      it "priceitが半角英数混合だと出品できない" do
+      it "priceが半角英数混合だと出品できない" do
           @item.price = "a12345"
           @item.valid?
           expect(@item.errors.full_messages).to include("Price is not included in the list")
       end
-      it "priceitが半角英語だと出品できない" do
+      it "priceが半角英語だと出品できない" do
           @item.price = "aaaa"
           @item.valid?
           expect(@item.errors.full_messages).to include("Price is not included in the list")
