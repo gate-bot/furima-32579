@@ -59,11 +59,11 @@ RSpec.describe Item do
         expect(@item.errors.full_messages).to include("Price can't be blank")
       end
       it "priceが300円未満だと出品できない" do
-        @item.price = 1
+        @item.price = 299
         @item.valid?
         expect(@item.errors.full_messages).to include("Price is not included in the list")
       end
-      it "priceitが10000000円以上だと出品できない" do
+      it "priceが10000000円以上だと出品できない" do
           @item.price = 10000000
           @item.valid?
           expect(@item.errors.full_messages).to include("Price is not included in the list")

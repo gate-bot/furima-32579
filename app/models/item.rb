@@ -3,13 +3,12 @@ class Item < ApplicationRecord
   has_one :user_item
   has_one_attached :image
 
-    validates :image, presence: true
-
-    validates :product_name, presence: true, length: { maximum: 40 }
-
-    validates :explanation, presence: true, length: { maximum: 1000 }
-
-    validates :price, presence: true, format: { with: /\A[0-9]+\z/ }, inclusion: { in: 300..9999999 }
+  with_options presence: true do
+    validates :image
+    validates :product_name, length: { maximum: 40 }
+    validates :explanation, length: { maximum: 1000 }
+    validates :price, format: { with: /\A[0-9]+\z/ }, inclusion: { in: 300..9999999 }
+  end
 
 
   extend ActiveHash::Associations::ActiveRecordExtensions
