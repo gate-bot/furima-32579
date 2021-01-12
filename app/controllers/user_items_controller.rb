@@ -4,7 +4,7 @@ class UserItemsController < ApplicationController
   
     def index
       @form_object = FormObject.new
-      if current_user.id != @item.id && @item.user_item.present?
+      if current_user.id != @item.user.id && @item.user_item.present?
          redirect_to root_path
       end
     end
