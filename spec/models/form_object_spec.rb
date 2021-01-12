@@ -2,12 +2,24 @@ require 'rails_helper'
 
 RSpec.describe FormObject, type: :model do
   before do
-    @form_object = FactoryBot.build(:form_object)
+    user = FactoryBot.create(:user)
+    item = FactoryBot.create(:item)
+    @form_object = FactoryBot.build(:form_object, user_id: user.id, item_id: item.id)
+    sleep(1)
   end
+
+
+  describe '商品購入機能の保存' do
+
+  context '商品購入がうまくいくとき' do
 
   it "必要な情報を適切に入力すると、商品の購入ができること" do
     expect(@form_object).to be_valid
   end
+end
+
+
+context '商品購入うまくいかない場合' do
 
   it "tokenが空では登録できないこと" do
     @form_object.token = nil
@@ -49,6 +61,7 @@ RSpec.describe FormObject, type: :model do
     @form_object.postal_code = "11111111"
     @form_object.valid?
     expect(@form_object.errors.full_messages).to include("Postal code is invalid. Include hyphen(-)")
+   end
   end
-
+ end
 end
