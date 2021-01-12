@@ -1,9 +1,11 @@
 class UserItemsController < ApplicationController
+    before_action :authenticate_user!
     before_action :set_item, only: [:index, :create ]
   
     def index
-      if user_signed_in? && current_user.id != @item.id
-        @form_object = FormObject.new
+      @form_object = FormObject.new
+      if current_user.id != @item.id && @item.user_item.present?
+         redirect_to root_path
       end
     end
   

@@ -125,20 +125,18 @@
     <h2 class='title'>ピックアップカテゴリー</h2>
     <%= link_to '新規投稿商品', "#", class: "subtitle" %>
     <% if @items.present? %>
-      <% @items.each do |item| %>
+    <% @items.each do |item| %>
     <ul class='item-lists'>
       <li class='list'>
         <%= link_to item_path(item.id) do %>
         <div class='item-img-content'>
           <%= image_tag item.image, class: "item-img" %>
 
-          <%# 商品が売れていればsold outを表示しましょう %>
          <% if item.user_item.present? %>
           <div class='sold-out'>
             <span>Sold Out!!</span>
           </div>
         <% end %>
-          <%# //商品が売れていればsold outを表示しましょう %>
 
         </div>
         <div class='item-info'>
@@ -184,3 +182,4 @@
   <%= image_tag 'icon_camera.png' , size: '185x50' ,class: "purchase-btn-icon" %>
   <% end %>
 <%= render "shared/footer" %>
+
