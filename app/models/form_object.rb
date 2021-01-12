@@ -6,7 +6,7 @@ class FormObject
     validates :postal_code, format: { with: /\A\d{3}[-]\d{4}\z/, message: "is invalid. Include hyphen(-)" }
     validates :municipality
     validates :address_num
-    validates :phone_num, length: { maximum: 11 }
+    validates :phone_num, format: { with: /\A[0-9]+\z/ },length: { minimum: 11, maximum: 11 }
     validates :prefecture_id
     validates :token
     validates :user_id
