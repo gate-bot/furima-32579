@@ -23,7 +23,7 @@ class ItemsController < ApplicationController
   end
 
   def edit
-    if @item.user_item.blank?
+    if @item.user_item.present?
       redirect_to root_path
     end
 
