@@ -24,6 +24,6 @@ class User < ApplicationRecord
 
 
   has_many :items
-  has_many :user_items
+  has_one :user_item
 
 end
